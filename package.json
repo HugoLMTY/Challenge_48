@@ -1,0 +1,27 @@
+{
+  "name": "challenge_48",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "devStart": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HugoLMTY/Challenge_48.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HugoLMTY/Challenge_48/issues"
+  },
+  "homepage": "https://github.com/HugoLMTY/Challenge_48#readme",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "express-ejs-layouts": "^2.5.0",
+    "mongoose": "^5.11.17",
+    "nodemon": "^2.0.7"
+  }
+}
