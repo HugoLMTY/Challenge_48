@@ -38,5 +38,4 @@ const productSchema = new mongoose.Schema({
         type: Boolean
     }
 })
-
 module.exports = mongoose.model('Product', productSchema)

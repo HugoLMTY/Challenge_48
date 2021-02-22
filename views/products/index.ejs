@@ -11,7 +11,7 @@
             <h4 style="text-align: center;">Filtrer les résultats</h4>
             <br>
 
-            <%- include('_form_fields') %>
+            <%- include('_forms_filter.ejs') %>
             
             <button type="submit" class="btn btn-context" >Rechercher</button>
         </form>
@@ -22,9 +22,9 @@
         <table>
             <thead>
                 <tr class="regionInfos">
-                    <th style="width: 690px;"> img </th>
-                    <th> id </th>
+                    <th>  </th>
                     <th> name </th>
+                    <th> tags </th>
                 </tr>
             </thead>
 
@@ -38,14 +38,17 @@
                 <% } else { %>
 
                 <% productList.forEach(product => { %>     
-                    <% finalPath = product.coll + product.path + product.extension %> 
-                <tr>
-                    <th> <img src="<%= finalPath %>" alt=""> </th>
-                    <th> <%= product._id %> </th>
+                    <% finalPath = product.coll + product.path%> 
+                <tr class="productInfos">
+                    <th class="productImg"> <img src="/img/<%=finalPath %>" alt=""> </th>
                     <th> <%= product.name %> </th>
+
+                    <% tagsByProduct.forEach(tag => { )%>
+
+                    <th> <%= product.tags %> </th>
                 </tr>
                 <% }) }%>
-        
+         
             </tbody>
         </table>
     </div>
