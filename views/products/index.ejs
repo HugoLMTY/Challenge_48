@@ -2,34 +2,30 @@
 <br>
 <br>
 <div class="row">
-
     <div class="col-1">
     </div>
+
     <div class="col-4" style="margin-right: 42px;">
-        <form action="/regions" method="get">
-            
+        <form action="/products/all" method="get">  
             <h4 style="text-align: center;">Filtrer les résultats</h4>
             <br>
 
-            <%- include('_forms_filter.ejs') %>
-            
+            <%- include('_forms_filter.ejs') %>   
             <button type="submit" class="btn btn-context" >Rechercher</button>
         </form>
     </div>
-
 
     <div class="col-6"  id="regionHolder">
         <table>
             <thead>
                 <tr class="regionInfos">
-                    <th>  </th>
-                    <th> name </th>
+                    <th style="width: 200px;">  </th>
+                    <th style="width: 200px;"> name </th>
                     <th> tags </th>
                 </tr>
             </thead>
 
             <tbody>
-
                 <% if (productList == '') { %>
                     <tr>
                         <th style="text-align: center; margin-top: 420px; font-size: 1.5em; height: 210px; color: gray; font-style: italic;" colspan="4">Aucun résultat</th>
@@ -40,15 +36,14 @@
                 <% productList.forEach(product => { %>     
                     <% finalPath = product.coll + product.path%> 
                 <tr class="productInfos">
-                    <th class="productImg"> <img src="/img/<%=finalPath %>" alt=""> </th>
-                    <th> <%= product.name %> </th>
+                    <td class="productImg"> <img src="/img/<%=finalPath %>" alt=""> </td>
+                    <td> <%= product.name %> </td>
 
-                    <% tagsByProduct.forEach(tag => { )%>
-
-                    <th> <%= product.tags %> </th>
+                    <% product.tags.forEach(tag => { %>
+                        <td> <%= tag %> </td>
+                    <% }) %>
                 </tr>
                 <% }) }%>
-         
             </tbody>
         </table>
     </div>

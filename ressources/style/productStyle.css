@@ -24,3 +24,7 @@
     border-radius: 10px;
     transform: scale(1.05);
 }
+
+.form-check-input:checked{
+    background-color: #72207f !important;
+}

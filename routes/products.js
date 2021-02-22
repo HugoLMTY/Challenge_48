@@ -7,13 +7,40 @@ router.get('/index', (req, res) => {
 })
 
 router.get('/all', async (req, res) => {
-    productList = await Product.find({})
-        res.render('products/index', productList)
+
+    const searchOptions = {}
+    if (req.query.productName)
+        searchOptions.name = req.query.productName
+
+    if (req.query.productTags)
+        searchOptions.tags = req.query.productTags
+
+    if (req.query.productDate)
+        searchOptions.date = req.query.productDate
+
+    if (req.query.productIsProduct == 'on')
+        searchOptions.isProduct = true
+    
+    if (req.query.productIsInstitu == 'on')
+        searchOptions.isInstitu = true
+
+    if (req.query.productIsHuman == 'on')
+        searchOptions.isHuman = true
+    
+    if (req.query.productIsCopyright == 'on')
+        searchOptions.isCopyrighted = true
+        
+
+   console.log(searchOptions)
+
+    productList = await Product.find(searchOptions)
+    res.render('products/index', productList)
 })
 
 router.get('/addProduct', (req, res) => {
     res.render('products/new')
 })
+
 
 router.post('/newProduct', async (req, res) => {
     const newProduct = Product ({
