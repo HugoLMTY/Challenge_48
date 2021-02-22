@@ -14,18 +14,6 @@ router.get('/profil', (req, res) => {
     res.render('user/profil')
 })
 
-router.post('/newUser', async (req, res) => {
-    const user = new User({
-        name: 'test',
-        mail: 'a@a',
-        password: 'eheh',
-        isAuth: true,
-    })
-    user.save().then(
-        res.redirect('/')
-    )
-})
-
 router.get('/login', (req, res) => {
     res.render('user/login')
 })
@@ -34,27 +22,28 @@ router.get('/register', (req, res) => {
     res.render('user/register')
 })
 
-router.post('/login', async (req, res) => {
+router.post('/userLogin', async (req, res) => {
     let loginOptions = {}
-    loginOptions.mail = new RegExp(req.query.loginMail)
-    
+    loginOptions.mail = new RegExp(req.body.loginMail, 'i')
+    console.log(loginOptions.mail);
     const loginUser = await User.find(loginOptions)
+    console.log(loginUser);
     if (loginUser == '') {
-        return res.render('users/login', {
+        return res.render('user/login', {
             errorMessage: 'Aucun utilisateur trouvé'
         }) 
     } else {
         // if (loginUser[0].password == req.body.loginPassword){
-            const hashCompare = bcrypt.compare(req.query.loginPassword, loginUser[0].password)
+            const hashCompare = await bcrypt.compare(req.body.loginPassword, loginUser[0].password)
             if (hashCompare){
                 const  {id, name, mail, password} = loginUser[0]
                 res.cookie('uid', id, {expires: new Date(2069, 0, 1)})
                 res.cookie('uname', name, {expires: new Date(2069, 0, 1)})
                 res.cookie('isConnected', true, {expires: new Date(2069, 0, 1)})
 
-                return res.redirect('/user/profil')
+                return res.redirect('/users/profil')
             } else
-                return res.render('users/login', { errorMessage: 'Mot de passe incorrect' }) 
+                return res.render('user/login', { errorMessage: 'Mot de passe incorrect' }) 
         }      
     })
 
