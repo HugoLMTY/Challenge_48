@@ -10,8 +10,10 @@ router.get('/', (req, res) => {
     res.render('user/login')
 })
 
-router.get('/profil', (req, res) => {
-    res.render('user/profil')
+router.get('/profil', async (req, res) => {
+    userInfos = await User.find({ _id: req.cookies['uid'] })
+    console.log(userInfos);
+    res.render('user/profil', userInfos)
 })
 
 router.get('/login', (req, res) => {
