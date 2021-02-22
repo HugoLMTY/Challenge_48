@@ -1,0 +1,17 @@
+[{
+  "_id": {
+    "$oid": "6033a62fa3d30566e19877c3"
+  },
+  "name": "admin",
+  "password": "admin",
+  "mail": "admin@passionfruit.com",
+  "isAuth": true
+},{
+  "_id": {
+    "$oid": "6033a7d0a3d30566e19877c4"
+  },
+  "name": "Hugo",
+  "password": "Hugo",
+  "mail": "Hugo@passionfruit.com",
+  "isAuth": false
+}]

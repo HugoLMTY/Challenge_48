@@ -1,0 +1,9 @@
+.tagItem{
+    border: 1px solid gray;
+    background: lightgray;
+    display: inline-block;
+    padding: 3;
+    margin: 2;
+    /* font-size: 0.9em; */
+    border-radius: 2px;
+}

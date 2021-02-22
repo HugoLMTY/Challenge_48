@@ -18,12 +18,13 @@ const productRouter = require('./routes/products')
 app.set('view engine', 'ejs')
 app.set('views', __dirname + '/views')
 app.set('layout', 'layout/layout')
+app.use(express.static('public'))
 app.use(expressLayout)
-app.use(express.static(__dirname + '/ressources'))
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }))
 
 app.use('/', indexRouter)
 app.use('/users', userRouter)
-
+app.use('/products', productRouter)
+app.use(express.static(__dirname + '/ressources'))
 
 app.listen(3000)

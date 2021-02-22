@@ -1,1 +1,49 @@
 Filtrage
+
+Img:
+    OK - string Name
+    OK - string Coll
+    OK - string Path
+    OK - string Extension
+    OK - string TypeImg (passion,fournisseur, logo)
+    OK - string Format (verti, hori)
+    OK - bool isProduct
+    OK - bool isHuman
+    OK - bool isInstitu
+    OK - bool isCopyrighted
+    OK - date dateUsing
+
+User:
+    string Name,
+    string Mail,
+    string Password,
+    bool isAuth
+
+
+    
+
+Query
+
+    find({name})
+
+    <img src="assets/img/ .... / ...." />
+
+
+
+
+    Faire un système de favori quand on cherche des images
+
+
+Obj:
+    - faire une page pour afficher toutes les images avec ou sans la recherche avec des critères/tag
+    - (possibilité de télécharger l'images)
+    - 
+
+
+
+powerpoint:
+
+-sommaire:
+  -But du projet
+  -Fonctionnalité possible
+  -

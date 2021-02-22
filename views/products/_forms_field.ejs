@@ -1,2 +1,45 @@
 <label for=""></label>
-<input type="text">
+<div id="newProductTags">
+
+</div>
+<input type="text" id="test" value=""> 
+<br>
+<span style="color: gray; font-size: 0.69em;">Séparer les tags par des virgules</span>
+
+
+<script>   
+    var element = document.getElementById('newProductTags')
+    
+    
+    function createP(str) {
+        if (str) {
+            var newTag = document.createElement("p")
+            newTag.innerText = str
+            newTag.classList.add('tagItem')
+            element.appendChild(newTag)
+        }
+    }
+
+    $(document).ready(function() {
+        var content = []
+        $('#test').keydown(function(e) {
+            console.log(e.keyCode)
+            if (e.keyCode == 32){
+                while (element.firstChild) {
+                    element.removeChild(element.lastChild);
+                }
+                content.length = 0
+                var str = $(this).val() 
+                content = str.split(" ")
+                content.forEach(element => {
+                    createP(element)
+                });
+            }
+        })
+    })
+
+    function deleteTag() {
+        console.log('ok')
+        $(this)
+    }
+</script>
