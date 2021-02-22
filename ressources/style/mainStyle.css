@@ -4,13 +4,13 @@
 }
 
 .wrapper {
-  margin: 50px 20px 0 20px;
-  padding: 20px 20px 20px 20px;
+  margin: 20px 10px 10px 69px;
   display: grid;
   grid-template-columns: repeat(8, 1fr);
   grid-gap: 10px;
   grid-auto-rows: minmax(100px, auto);
 }
+
 .one {
   grid-column: 1;
   grid-row: 1;

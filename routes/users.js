@@ -6,14 +6,23 @@ const nodemailer = require('nodemailer')
 
 var mailVerif = 'hugo.lm2707@gmail.com'
 
+
 router.get('/', (req, res) => {
     res.render('user/login')
 })
 
 router.get('/profil', async (req, res) => {
-    userInfos = await User.find({ _id: req.cookies['uid'] })
-    console.log(userInfos);
-    res.render('user/profil', userInfos)
+
+    var _uid = req.cookies['uid']
+    var _uname = req.cookies['uname']
+
+    if (_uid != null){
+        userInfos = await User.find({ _id: _uid })
+        console.log(userInfos);
+        res.render('user/profil', userInfos)
+    } else {    
+        res.redirect('/users/login')
+    }
 })
 
 router.get('/login', (req, res) => {
