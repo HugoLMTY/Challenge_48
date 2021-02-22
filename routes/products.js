@@ -42,7 +42,7 @@ router.get('/all', async (req, res) => {
 })
 
 router.get('/addProduct', (req, res) => {
-    res.render('products/new')
+    res.render('products/display')
 })
 
 
