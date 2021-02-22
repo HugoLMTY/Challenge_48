@@ -2,6 +2,7 @@ const express = require('express')
 const expressLayout = require('express-ejs-layouts')
 const bodyParser = require('body-parser')
 const app = express()
+const cookieParser = require('cookie-parser')
 const mongoose = require('mongoose')
 const db = mongoose.connection
 
@@ -20,6 +21,7 @@ app.set('views', __dirname + '/views')
 app.set('layout', 'layout/layout')
 app.use(express.static('public'))
 app.use(expressLayout)
+app.use(cookieParser())
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }))
 
 app.use('/', indexRouter)

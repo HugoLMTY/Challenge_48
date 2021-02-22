@@ -13,8 +13,8 @@ router.get('/', (req, res) => {
 
 router.get('/profil', async (req, res) => {
 
-    var _uid = req.cookies['uid']
     var _uname = req.cookies['uname']
+    var _uid = req.cookies['uid']
 
     if (_uid != null){
         userInfos = await User.find({ _id: _uid })
@@ -26,19 +26,27 @@ router.get('/profil', async (req, res) => {
 })
 
 router.get('/login', (req, res) => {
-    res.render('user/login')
+    var _uid = req.cookies['uid']
+
+    if (_uid != null)
+        res.redirect('user/profil')
+    else
+        res.render('user/login')
 })
 
 router.get('/register', (req, res) => {
-    res.render('user/register')
+    var _uid = req.cookies['uid']
+
+    if (_uid != null)
+        res.redirect('user/profil')
+    else
+        res.render('user/register')
 })
 
 router.post('/userLogin', async (req, res) => {
     let loginOptions = {}
     loginOptions.mail = new RegExp(req.body.loginMail, 'i')
-    console.log(loginOptions.mail);
     const loginUser = await User.find(loginOptions)
-    console.log(loginUser);
     if (loginUser == '') {
         return res.render('user/login', {
             errorMessage: 'Aucun utilisateur trouvé'
@@ -47,11 +55,9 @@ router.post('/userLogin', async (req, res) => {
         // if (loginUser[0].password == req.body.loginPassword){
             const hashCompare = await bcrypt.compare(req.body.loginPassword, loginUser[0].password)
             if (hashCompare){
-                const  {id, name, mail, password} = loginUser[0]
-                res.cookie('uid', id, {expires: new Date(2069, 0, 1)})
-                res.cookie('uname', name, {expires: new Date(2069, 0, 1)})
+                res.cookie('uid', loginUser[0]._id, {expires: new Date(2069, 0, 1)})
+                res.cookie('uname', loginUser[0].name, {expires: new Date(2069, 0, 1)})
                 res.cookie('isConnected', true, {expires: new Date(2069, 0, 1)})
-
                 return res.redirect('/users/profil')
             } else
                 return res.render('user/login', { errorMessage: 'Mot de passe incorrect' }) 
@@ -71,7 +77,7 @@ router.post('/userRegister', async (req, res) => {
         var transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-              user: 'mailing node',
+              user: 'mailnode420@gmail.com',
               pass: 'Nodenode420'
             }
           });
@@ -95,5 +101,9 @@ router.post('/userRegister', async (req, res) => {
     }
 })
     
+router.get('/logout', (req, res) => {
+    res.clearCookie()
+    res.redirect('/products/index')
+})
     
 module.exports = router 
