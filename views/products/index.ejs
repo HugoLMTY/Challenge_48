@@ -36,7 +36,7 @@
                 <% productList.forEach(product => { %>     
                     <% finalPath = product.coll + product.path%> 
                 <tr class="productInfos">
-                    <td class="productImg"> <img src="/img/<%=finalPath %>" alt=""> </td>
+                    <td > <img class="img-thumbnail rounded mx-auto d-block"  src="/img/<%=finalPath %>" alt=""> </td>
                     <td> <%= product.name %> </td>
 
                     <% product.tags.forEach(tag => { %>

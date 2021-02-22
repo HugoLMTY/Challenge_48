@@ -1,0 +1,53 @@
+<h1>Passion Froid</h1>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+
+<div class="container">
+  <div>
+    <label for="formFile" class="form-label"></label>
+    <input class="form-control" type="file" id="formFile">
+  </div>
+  <form>
+    <div>
+      <input type="text" class="form-control" placeholder="nom/libellé" aria-label="First name" required>
+    </div>
+  </form><p>Directory & accept: <input type="file" webkitdirectory mozdirectory accept="image/*" /></p>
+  <div class="row">
+    <div class="col-4">
+      <label for="validationDefault04" class="form-label"></label>
+      <select class="form-select" id="validationDefault04" required>
+        <option selected disabled value="">type</option>
+        <option>ambiance</option>
+        <option>produit</option>
+      </select>
+    </div>
+    <div class="col-4">
+      <input type="text" class="form-control" placeholder="crédits photos" aria-label="First name" required>
+    </div>
+    <select class="col-4" id="validationDefault04" required>
+      <option selected disabled value="">format</option>
+      <option>paysage</option>
+      <option>portrait</option>
+    </select>
+  </div>
+
+
+  <div class="row">
+    <div class="col-6">
+      <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off">
+      <label class="btn btn-outline-primary" for="btn-check-outlined">photo avec produit</label><br>
+    </div>
+    <div class="col-6">
+      <input type="checkbox" class="btn-check" id="btn-check-2-outlined" autocomplete="off">
+      <label class="btn btn-outline-primary" for="btn-check-2-outlined">photo avec humain</label><br>
+    </div>
+  </div>
+
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox" value="" id="invalidCheck2">
+    <label class="form-check-label" for="invalidCheck2">Photo institutionnelle</label>
+  </div>
+  <div>
+    <button class="btn btn-primary" type="submit">envoyé</button>
+  </div>
+</div>

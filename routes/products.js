@@ -6,6 +6,10 @@ router.get('/index', (req, res) => {
     res.render('products/index')
 })
 
+router.get('/display', (req, res) => {
+    res.render('products/display')
+})
+
 router.get('/all', async (req, res) => {
 
     const searchOptions = {}
