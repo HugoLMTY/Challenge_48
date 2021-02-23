@@ -8,39 +8,28 @@ var mailVerif = 'hugo.lm2707@gmail.com'
 
 
 router.get('/', (req, res) => {
-    res.render('user/login')
+    res.render('user/profil')
 })
 
-router.get('/profil', async (req, res) => {
+router.get('/profil/:id', async (req, res) => {
 
-    var _uname = req.cookies['uname']
-    var _uid = req.cookies['uid']
+    var _uid = req.params.id
 
     if (_uid != null){
-        userInfos = await User.find({ _id: _uid })
+        userInfos = await User.find({ _id: _uid._id })
         console.log(userInfos);
         res.render('user/profil', userInfos)
     } else {    
-        res.redirect('/users/login')
+        res.redirect('/user/login')
     }
 })
 
 router.get('/login', (req, res) => {
-    var _uid = req.cookies['uid']
-
-    if (_uid != null)
-        res.redirect('user/profil')
-    else
-        res.render('user/login')
+    res.render('user/login')
 })
 
 router.get('/register', (req, res) => {
-    var _uid = req.cookies['uid']
-
-    if (_uid != null)
-        res.redirect('user/profil')
-    else
-        res.render('user/register')
+    res.render('user/register')
 })
 
 router.post('/userLogin', async (req, res) => {
@@ -58,7 +47,9 @@ router.post('/userLogin', async (req, res) => {
                 res.cookie('uid', loginUser[0]._id, {expires: new Date(2069, 0, 1)})
                 res.cookie('uname', loginUser[0].name, {expires: new Date(2069, 0, 1)})
                 res.cookie('isConnected', true, {expires: new Date(2069, 0, 1)})
-                return res.redirect('/users/profil')
+                var userInfos = await User.find({ _id: req.cookies['uid']})
+                console.log(userInfos)
+                return res.render('user/profil/' + loginUser[0]._id)
             } else
                 return res.render('user/login', { errorMessage: 'Mot de passe incorrect' }) 
         }      
@@ -103,7 +94,7 @@ router.post('/userRegister', async (req, res) => {
     
 router.get('/logout', (req, res) => {
     res.clearCookie()
-    res.redirect('/products/index')
+    res.redirect('/products/all')
 })
     
 module.exports = router 

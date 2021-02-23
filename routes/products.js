@@ -2,10 +2,6 @@ const express = require('express')
 const router = express.Router()
 const Product = require('../models/product')
 
-router.get('/index', (req, res) => {
-    res.render('products/index')
-})
-
 router.get('/display', (req, res) => {
     res.render('products/display')
 })
