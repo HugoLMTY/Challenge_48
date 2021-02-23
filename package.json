@@ -29,7 +29,9 @@
     "express": "^4.17.1",
     "express-ejs-layouts": "^2.5.0",
     "heroku": "^7.48.0",
+    "install": "^0.13.0",
     "mongoose": "^5.11.17",
+    "node-pre-gyp": "^0.17.0",
     "nodemailer": "^6.4.18",
     "nodemon": "^2.0.7"
   }
