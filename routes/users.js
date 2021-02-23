@@ -74,10 +74,11 @@ router.post('/userRegister', async (req, res) => {
           });
           
           var mailOptions = {
-            from: 'mailnode420@gmail.com',
-            to: 'hugo.lm2707@gmail.com',
-            subject: 'ok boomer',
-            text: 'laisse moi dormir zebi'
+            from: "mailnode420@gmail.com",
+            to: req.body.registerMail,
+            subject: "PassionFroid",
+            text:
+              "Bienvenue sur PassionFroid, votre compte à été créer et votre mail à été vérifié.",
           };
           
           transporter.sendMail(mailOptions)
