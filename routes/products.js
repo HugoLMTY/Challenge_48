@@ -9,25 +9,10 @@ router.get('/display', (req, res) => {
 router.get('/all', async (req, res) => {
 
     currentStates =  []
-    console.log(req.query.productIsProduct)
-    console.log(req.query.productIsHuman)
     currentStates.currentName = req.query.productName
     currentStates.currentTags = req.query.productTags
     currentStates.currentColl = req.query.productColl
     currentStates.currentDate = req.query.productDate
-    currentStates.currentIsProduct = getState(req.query.productIsProduct)
-    currentStates.currentIsHuman = getState(req.query.productIsHuman)
-    currentStates.currentIsInstitu = getState(req.query.productIsInstitu)
-    currentStates.currentIsCopyrighted = getState(req.query.productIsCopyrighted)
-
-    function getState(target) {
-        if (target == 'on')
-            target = true
-        else
-            target = false
-    }
-
-    console.log(currentStates)
 
 
     const searchOptions = {}
@@ -40,20 +25,28 @@ router.get('/all', async (req, res) => {
     if (req.query.productDate)
         searchOptions.date = req.query.productDate
 
-    if (req.query.productIsProduct == 'on')
+    if (req.query.productIsProduct == 'on'){
         searchOptions.isProduct = true
+        currentStates.productIsProduct = true
+    }
     
-    if (req.query.productIsInstitu == 'on')
+    if (req.query.productIsInstitu == 'on'){
         searchOptions.isInstitu = true
+        currentStates.productIsInstitu = true
+    }
 
-    if (req.query.productIsHuman == 'on')
+    if (req.query.productIsHuman == 'on'){
         searchOptions.isHuman = true
-    
-    if (req.query.productIsCopyright == 'on')
-        searchOptions.isCopyrighted = true
-        
+        currentStates.productIsHuman = true
+    }
 
-   console.log(searchOptions)
+    if (req.query.productIsCopyright == 'on'){
+        searchOptions.isCopyrighted = true
+        currentStates.productIsCopyright = true
+    }
+    
+    console.log('state: ', currentStates)
+    console.log('options: ', searchOptions)
 
     productList = await Product.find(searchOptions)
     res.render('products/index', {
