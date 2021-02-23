@@ -1,0 +1,17 @@
+body {
+    background: #f4f4f4;
+}
+
+.logo {
+    margin-top: 15px;
+    margin-left: 85px;
+}
+
+.container {
+    margin-top: 25px;
+}
+
+img {
+    object-fit: contain;
+    max-height: 320px;
+}

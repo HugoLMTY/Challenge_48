@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
+  "engines": {
+    "node": "14.x",
+    "npm": "6.x"
+  },
   "scripts": {
     "start": "node server.js",
     "devStart": "nodemon server.js"
@@ -19,11 +23,13 @@
   "homepage": "https://github.com/HugoLMTY/Challenge_48#readme",
   "dependencies": {
     "bcrypt": "^5.0.0",
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "express-ejs-layouts": "^2.5.0",
+    "heroku": "^7.48.0",
     "mongoose": "^5.11.17",
     "nodemailer": "^6.4.18",
     "nodemon": "^2.0.7"

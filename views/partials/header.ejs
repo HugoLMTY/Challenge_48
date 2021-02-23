@@ -19,7 +19,7 @@
         <li class="nav-item">
           <a class="nav-link" href="/products/addProduct">Ajouter un produit</a>
         </li>
-        <% if (null == null) { %>
+        <% if (locals.isConnected == false) { %>
           <li class="nav-item">
               <a class="nav-link" href="/user/register">Créer un compte </a>
           </li>

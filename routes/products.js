@@ -6,6 +6,26 @@ router.get('/display', (req, res) => {
     res.render('products/display')
 })
 
+router.get('/editPub', (req, res) => {
+    res.render('products/editpub')
+})
+
+router.get('/action', (req, res) => {
+
+    const id_product = req.body.idProduct
+    
+    if (req.body.actionBtn == 'delete') {
+        res.render('products/delete', {
+            id: id_product
+        })
+    } else if (req.body.actionBtn == 'edit') {
+        res.render('product/edit', {
+            id: id_product
+        })
+    }
+})
+
+
 router.get('/all', async (req, res) => {
 
     currentStates =  []
