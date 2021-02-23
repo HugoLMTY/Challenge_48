@@ -1,31 +1,49 @@
 <div class="row">
-    <div class="col-12">
-        <label for="currentProductName">Nom</label>
-        <input type="text" name="productName" 
+    <div class="col-8">
+        <label class="form-label" for="currentProductName">Nom</label>
+        <input type="text" name="productName" value="<%= currents.currentName %>"
         id="currentProductName" class="form-control">
     </div>
 
+    <div class="col-4">
+        <label class="form-label" for="currentProductColl">Catégorie</label>
+        <select name="productColl" class="form-control" id="currentProductColl">
+
+                <% if (currents.currentColl == 'photoAmbiance') {%>
+            <option selected value="photoAmbiance">Ambiance</option>
+            <option value="photoProduits">Produits</option>
+                <% } else if (currents.currentColl == 'photoProduits') {%>
+            <option selected value="photoProduits">Produits</option>
+            <option value="photoAmbiance">Ambiance</option>
+                <% } else {%>
+            <option value="photoAmbiance">Ambiance</option>
+            <option value="photoProduits">Produits</option>
+            <% } %>
+
+        </select>
+    </div>
+
     <div class="col-6">
-        <label for="currentProductTags">Tags</label>
-        <input type="text" name="productTags" 
+        <label class="form-label" for="currentProductTags">Tags</label>
+        <input type="text" name="productTags"  value="<%= currents.currentTags %>"
         id="currentProductTags" class="form-control">
     </div>
 
     <div class="col-6">
-        <label for="currentProductDate">Date limite d'utilisation</label>
+        <label class="form-label" for="currentProductDate">Date limite d'utilisation</label>
         <input type="date" name="productDate" 
         id="currentProductDate" class="form-control">
     </div>
 
     <div class="col-6 form-check form-switch">
-        <input type="checkbox" name="productIsProduct"
+        <input type="checkbox" name="productIsProduct" value="<%= currents.currentIsProduct %>"
         id="currentProductIsProduct" class="form-check-input" >
         <label class="form-check-label" 
         for="currentProductIsProduct">Contient un produit</label>
     </div>
 
     <div class="col-6 form-check form-switch">
-        <input type="checkbox" name="productIsInstitu"
+        <input type="checkbox" name="productIsInstitu" value="<%= currents.currentIsInstitu %>"
         id="currentProductIsInstitu" class="form-check-input" >
         <label class="form-check-label" 
         for="currentProductIsInstitu">Photo Institutionnelle</label>
@@ -33,7 +51,7 @@
 
     
     <div class="col-6 form-check form-switch">
-        <input type="checkbox" name="productIsHuman"
+        <input type="checkbox" name="productIsHuman" value="<%= currents.currentIsHuman %>"
         id="currentProductIsHuman" class="form-check-input" >
         <label class="form-check-label" 
         for="currentProductIsHuman">Contient un humain</label>
@@ -41,7 +59,7 @@
 
     
     <div class="col-6 form-check form-switch">
-        <input type="checkbox" name="productIsCopyrighted"
+        <input type="checkbox" name="productIsCopyrighted" value="<%= currents.currentIsCpopyrighted %>"
         id="currentProductIsCopyrighted" class="form-check-input" >
         <label class="form-check-label" 
         for="currentProductIsCopyrighted">Sous copyright</label>

@@ -8,6 +8,28 @@ router.get('/display', (req, res) => {
 
 router.get('/all', async (req, res) => {
 
+    currentStates =  []
+    console.log(req.query.productIsProduct)
+    console.log(req.query.productIsHuman)
+    currentStates.currentName = req.query.productName
+    currentStates.currentTags = req.query.productTags
+    currentStates.currentColl = req.query.productColl
+    currentStates.currentDate = req.query.productDate
+    currentStates.currentIsProduct = getState(req.query.productIsProduct)
+    currentStates.currentIsHuman = getState(req.query.productIsHuman)
+    currentStates.currentIsInstitu = getState(req.query.productIsInstitu)
+    currentStates.currentIsCopyrighted = getState(req.query.productIsCopyrighted)
+
+    function getState(target) {
+        if (target == 'on')
+            target = true
+        else
+            target = false
+    }
+
+    console.log(currentStates)
+
+
     const searchOptions = {}
     if (req.query.productName)
         searchOptions.name = req.query.productName
@@ -34,7 +56,10 @@ router.get('/all', async (req, res) => {
    console.log(searchOptions)
 
     productList = await Product.find(searchOptions)
-    res.render('products/index', productList)
+    res.render('products/index', {
+        productList: productList,
+        currents: currentStates
+    })
 })
 
 router.get('/addProduct', (req, res) => {

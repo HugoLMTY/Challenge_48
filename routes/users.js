@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const User = require('../models/user')
+const Product = require('../models/product')
 const bcrypt = require('bcrypt')
 const nodemailer = require('nodemailer')
 
@@ -11,14 +12,17 @@ router.get('/', (req, res) => {
     res.render('user/profil')
 })
 
-router.get('/profil/:id', async (req, res) => {
-
+router.get('/profil', async (req, res) => {
     var _uid = req.params.id
 
     if (_uid != null){
         userInfos = await User.find({ _id: _uid._id })
+        userInfos = await userProducts.find({ _id: _uid._id })
         console.log(userInfos);
-        res.render('user/profil', userInfos)
+        res.render('user/profil', {
+            userInfos: userInfos,
+            userProducts: userProductsByID
+        })
     } else {    
         res.redirect('/user/login')
     }
@@ -53,7 +57,7 @@ router.post('/userLogin', async (req, res) => {
             } else
                 return res.render('user/login', { errorMessage: 'Mot de passe incorrect' }) 
         }      
-    })
+})
 
 router.post('/userRegister', async (req, res) => {
     const hash = await bcrypt.hash(req.body.registerPassword, 10)
