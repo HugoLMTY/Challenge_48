@@ -33,7 +33,7 @@ router.get('/all', async (req, res) => {
     currentStates.currentTags = req.query.productTags
     currentStates.currentColl = req.query.productColl
     currentStates.currentDate = req.query.productDate
-
+    console.log(currentStates.currentColl)
 
     const searchOptions = {}
     if (req.query.productName)
@@ -44,6 +44,10 @@ router.get('/all', async (req, res) => {
 
     if (req.query.productDate)
         searchOptions.date = req.query.productDate
+
+    if (req.query.productColl)
+        searchOptions.coll = req.query.productColl + '/'
+
 
     if (req.query.productIsProduct == 'on'){
         searchOptions.isProduct = true

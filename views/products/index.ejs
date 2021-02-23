@@ -5,7 +5,7 @@
     <div class="col-1">
     </div>
 
-    <div class="col-4" style="margin-right: 42px;">
+    <div class="col-2" style="margin-right: 42px;">
         <form action="/products/all" method="get">  
             <h4 style="text-align: center;">Filtrer les résultats</h4>
             <br>
@@ -15,37 +15,35 @@
         </form>
     </div>
 
-    <div class="col-6"  id="regionHolder">
-        <table>
-            <thead>
-                <tr class="regionInfos">
-                    <th style="width: 200px;">  </th>
-                    <th style="width: 200px;"> name </th>
-                    <th> tags </th>
-                </tr>
-            </thead>
+    <div class="col-8 row"  id="regionHolder">
+        <% if (productList == '') { %>
+            <tr>
+                <th style="text-align: center; margin-top: 420px; font-size: 1.5em; height: 210px; color: gray; font-style: italic;" colspan="4">Aucun résultat</th>
+            </tr>
 
-            <tbody>
-                <% if (productList == '') { %>
-                    <tr>
-                        <th style="text-align: center; margin-top: 420px; font-size: 1.5em; height: 210px; color: gray; font-style: italic;" colspan="4">Aucun résultat</th>
-                    </tr>
+        <% } else { %>
 
-                <% } else { %>
-
-                <% productList.forEach(product => { %>     
-                    <% finalPath = product.coll + product.path%> 
-                <tr class="productInfos">
-                    <td > <img class="img-thumbnail rounded mx-auto d-block"  src="/img/<%=finalPath %>" alt=""> </td>
-                    <td> <%= product.name %> </td>
-
-                    <% product.tags.forEach(tag => { %>
-                        <td> <%= tag %> </td>
-                    <% }) %>
-                </tr>
-                <% }) }%>
-            </tbody>
-        </table>
+        <% productList.forEach(product => { %>     
+            <% finalPath = product.coll + product.path%> 
+            <div class="col-4">
+                <form action="/products/action" method="GET">
+                    <div class="bg-white rounded shadow-sm"><img src="/img/<%= finalPath  %>" alt="" class="img-fluid card-img-top">
+                        <div class="p-4">
+                            <h5> 
+                                <a href="#" class="text-dark"><%= product.name %></a>
+                            </h5>
+                            <% product.tags.forEach(tag => { %>
+                                <p class="small text-muted mb-0"><%= tag %></p>
+                            <% }) %>
+                            <div class="d-flex align-items-center justify-content-between px-3 py-2 mt-4">
+                                <button type="submit" value="edit" class="btn btn-outline-primary">Modifier</button>
+                                <button type="submit" value="delete" class="btn btn-outline-danger">Supprimer</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        <% }) }%>
     </div>
 </div>
 

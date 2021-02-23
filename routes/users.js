@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const User = require('../models/user')
 const Product = require('../models/product')
-const bcrypt = require('bcrypt-nodejs')
+const bcrypt = require('bcrypt')
 const nodemailer = require('nodemailer')
 
 var mailVerif = 'hugo.lm2707@gmail.com'
@@ -13,19 +13,15 @@ router.get('/', (req, res) => {
 })
 
 router.get('/profil', async (req, res) => {
-    var _uid = req.params.id
 
-    if (_uid != null){
-        userInfos = await User.find({ _id: _uid._id })
-        userInfos = await userProducts.find({ _id: _uid._id })
-        console.log(userInfos);
-        res.render('user/profil', {
-            userInfos: userInfos,
-            userProducts: userProductsByID
-        })
-    } else {    
-        res.redirect('/user/login')
-    }
+    var _uid = req.cookies['uid']
+
+    userInfos = await User.find({ _id: _uid })
+    console.log(userInfos);
+    res.render('user/profil', {
+        userInfos: userInfos,
+        userProducts: userProductsByID
+    })   
 })
 
 router.get('/login', (req, res) => {
@@ -53,9 +49,9 @@ router.post('/userLogin', async (req, res) => {
                 res.cookie('isConnected', true, {expires: new Date(2069, 0, 1)})
                 var userInfos = await User.find({ _id: req.cookies['uid']})
                 console.log(userInfos)
-                return res.render('user/profil/' + loginUser[0]._id)
+                res.render('user/profil/')
             } else
-                return res.render('user/login', { errorMessage: 'Mot de passe incorrect' }) 
+                res.render('user/login', { errorMessage: 'Mot de passe incorrect' }) 
         }      
 })
 
