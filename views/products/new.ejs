@@ -1,8 +1,14 @@
 <h1>Ajouter </h1>
-    <form action="">
-        <%- include('_forms_field.ejs') %>
+<form action="/action_page.php">
+    <label for="files">Select files:</label>
+    <input type="file" id="files" name="files" multiple><br><br>
+    <input type="submit">
+</form>
+
+<form action="">
+    <%- include('_forms_field.ejs') %>
 
         <button type="submit">
             Valider
         </button>
-    </form>
+</form>

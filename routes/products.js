@@ -2,18 +2,12 @@ const express = require('express')
 const router = express.Router()
 const Product = require('../models/product')
 
-router.get('/index', (req, res) => {
-    res.render('products/index')
-})
-
 router.get('/display', (req, res) => {
     res.render('products/display')
 })
 
 router.get('/all', async (req, res) => {
 
-<<<<<<< Updated upstream
-=======
     currentStates =  []
     console.log(req.query.productIsProduct)
     console.log(req.query.productIsHuman)
@@ -21,17 +15,11 @@ router.get('/all', async (req, res) => {
     currentStates.currentTags = req.query.productTags
     currentStates.currentColl = req.query.productColl
     currentStates.currentDate = req.query.productDate
-    currentStates.currentIsProduct = getState(req.query.productIsProduct)
-    currentStates.currentIsHuman = getState(req.query.productIsHuman)
-    currentStates.currentIsInstitu = getState(req.query.productIsInstitu)
-    currentStates.currentIsCopyrighted = getState(req.query.productIsCopyrighted)
-
     
 
     console.log(currentStates)
 
 
->>>>>>> Stashed changes
     const searchOptions = {}
     if (req.query.productName)
         searchOptions.name = req.query.productName
@@ -44,25 +32,28 @@ router.get('/all', async (req, res) => {
 
     if (req.query.productIsProduct == 'on')
         searchOptions.isProduct = true
-        searchOptions.name = req.query.productName
+        currentStates.currentIsProduct = true
     
     if (req.query.productIsInstitu == 'on')
         searchOptions.isInstitu = true
-        searchOptions.name = req.query.productName
+        currentStates.currentIsHuman = true
 
     if (req.query.productIsHuman == 'on')
         searchOptions.isHuman = true
-        searchOptions.name = req.query.productName
+        currentStates.currentIsInstitu = true
     
     if (req.query.productIsCopyright == 'on')
         searchOptions.isCopyrighted = true
-        searchOptions.name = req.query.productName
+        currentStates.currentIsCopyrighted = true
         
 
    console.log(searchOptions)
 
     productList = await Product.find(searchOptions)
-    res.render('products/index', productList)
+    res.render('products/index', {
+        productList: productList,
+        currents: currentStates
+    })
 })
 
 router.get('/addProduct', (req, res) => {
