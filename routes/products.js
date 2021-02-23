@@ -12,6 +12,26 @@ router.get('/display', (req, res) => {
 
 router.get('/all', async (req, res) => {
 
+<<<<<<< Updated upstream
+=======
+    currentStates =  []
+    console.log(req.query.productIsProduct)
+    console.log(req.query.productIsHuman)
+    currentStates.currentName = req.query.productName
+    currentStates.currentTags = req.query.productTags
+    currentStates.currentColl = req.query.productColl
+    currentStates.currentDate = req.query.productDate
+    currentStates.currentIsProduct = getState(req.query.productIsProduct)
+    currentStates.currentIsHuman = getState(req.query.productIsHuman)
+    currentStates.currentIsInstitu = getState(req.query.productIsInstitu)
+    currentStates.currentIsCopyrighted = getState(req.query.productIsCopyrighted)
+
+    
+
+    console.log(currentStates)
+
+
+>>>>>>> Stashed changes
     const searchOptions = {}
     if (req.query.productName)
         searchOptions.name = req.query.productName
@@ -24,15 +44,19 @@ router.get('/all', async (req, res) => {
 
     if (req.query.productIsProduct == 'on')
         searchOptions.isProduct = true
+        searchOptions.name = req.query.productName
     
     if (req.query.productIsInstitu == 'on')
         searchOptions.isInstitu = true
+        searchOptions.name = req.query.productName
 
     if (req.query.productIsHuman == 'on')
         searchOptions.isHuman = true
+        searchOptions.name = req.query.productName
     
     if (req.query.productIsCopyright == 'on')
         searchOptions.isCopyrighted = true
+        searchOptions.name = req.query.productName
         
 
    console.log(searchOptions)
